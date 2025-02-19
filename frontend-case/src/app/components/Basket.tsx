@@ -46,7 +46,7 @@ const Basket = () => {
       {basket.length === 0 ? (
         <p>Your basket is empty.</p>
       ) : (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div style={{ backgroundColor: "white", padding: "16px" }}>
           {basket.map((item: BasketItem) => (
             <BasketCard
               key={item.id}

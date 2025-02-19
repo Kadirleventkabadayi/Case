@@ -6,7 +6,13 @@ import store from "./store/store"; // Redux store
 export default function Page() {
   return (
     <Provider store={store}>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <h2>Welcome to your shopping cart</h2>
         <Basket />
       </div>

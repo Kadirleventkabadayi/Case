@@ -1,5 +1,4 @@
-import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Card } from "antd";
+import { Card, Typography } from "antd";
 
 interface BasketCardProps {
   title: string;
@@ -16,35 +15,44 @@ const BasketCard: React.FC<BasketCardProps> = ({
   onRemove,
   image,
 }) => {
+  const { Text } = Typography;
   return (
     <Card
-      style={{ width: 300, height: 450, margin: "16px" }}
+      hoverable
+      style={{
+        width: 600,
+        height: 200,
+        margin: "16px",
+        display: "flex",
+        cursor: "default",
+      }}
+      styles={{
+        body: {
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        },
+      }}
       cover={
         <img
           alt="example"
           src={image}
           style={{
-            width: "100%",
+            width: "200px",
             height: "200px",
             objectFit: "contain",
+            padding: "16px",
           }}
         />
       }
-      actions={[
-        <Button
-          key="remove-from-cart"
-          type="primary"
-          icon={<DeleteOutlined />}
-          onClick={onRemove}
-        >
-          Remove
-        </Button>,
-      ]}
     >
       <Card.Meta
+        style={{ width: "100%" }}
         title={
           <div
             style={{
+              width: "14vw",
+              whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
@@ -55,8 +63,8 @@ const BasketCard: React.FC<BasketCardProps> = ({
         description={
           <div
             style={{
-              height: "50px",
-              width: "100%",
+              width: "14vw",
+              whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
@@ -65,8 +73,25 @@ const BasketCard: React.FC<BasketCardProps> = ({
           </div>
         }
       />
-      <div style={{ marginTop: "16px", fontWeight: "bold" }}>
-        ${price.toFixed(2)}
+      <div
+        style={{
+          minWidth: "50px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ marginTop: "16px", fontWeight: "bold" }}>
+          ${price.toFixed(2)}
+        </div>
+        <Text
+          key="remove-from-cart"
+          onClick={onRemove}
+          underline
+          style={{ cursor: "pointer" }}
+        >
+          Remove
+        </Text>
       </div>
     </Card>
   );
