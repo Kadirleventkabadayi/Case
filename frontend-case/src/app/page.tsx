@@ -1,7 +1,7 @@
 "use client";
-import Basket from "./components/Basket";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import HomePage from "./components/HomePage";
 
 export default function Page() {
   return (
@@ -13,7 +13,7 @@ export default function Page() {
           alignItems: "center",
         }}
       >
-        <Basket />
+        <HomePage />
       </div>
     </Provider>
   );

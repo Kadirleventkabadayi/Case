@@ -1,5 +1,5 @@
 import { Card, Typography } from "antd";
-import styles from "../styles/BasketCard.module.css";
+import styles from "../../styles/BasketCard.module.css";
 
 interface BasketCardProps {
   title: string;
@@ -16,8 +16,6 @@ const BasketCard: React.FC<BasketCardProps> = ({
   onRemove,
   image,
 }) => {
-  const { Text } = Typography;
-
   return (
     <Card
       hoverable
@@ -40,13 +38,13 @@ const BasketCard: React.FC<BasketCardProps> = ({
       />
       <div className={styles.cardInfo}>
         <div className={styles.cardPrice}>${price.toFixed(2)}</div>
-        <Text
+        <Typography.Text
           key="remove-from-cart"
           onClick={onRemove}
           className={styles.removeText}
         >
           Remove
-        </Text>
+        </Typography.Text>
       </div>
     </Card>
   );
