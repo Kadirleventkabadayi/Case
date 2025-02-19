@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { useGetProductsQuery } from "../services/api";
-import BasketCard from "./BasketCard"; // BasketCard bileşenini import ettik
+import BasketCard from "./BasketCard";
+import { Typography } from "antd";
+import FormBtn from "./FormBtn";
 
 interface BasketItem {
   id: number;
@@ -17,19 +19,16 @@ const Basket = () => {
   const { data: products, isLoading, error } = useGetProductsQuery(undefined);
   const [basket, setBasket] = useState<BasketItem[]>([]);
 
-  // API'den ürün verisi geldiğinde sepete yerleştiriyoruz
   useEffect(() => {
     if (products) {
-      setBasket(products);
+      setBasket(products.slice(0, 3));
     }
   }, [products]);
 
-  // Sepetten ürün silme fonksiyonu
   const removeFromBasket = (id: number) => {
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== id));
   };
 
-  // Sepet toplamını hesaplama
   const total = basket.reduce((sum, item) => sum + item.price, 0);
 
   if (isLoading) {
@@ -41,10 +40,19 @@ const Basket = () => {
   }
 
   return (
-    <div>
-      <h2>Your Basket</h2>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: "white",
+      }}
+    >
+      <Typography.Title level={2} style={{ textAlign: "center" }}>
+        Your Basket
+      </Typography.Title>
       {basket.length === 0 ? (
-        <p>Your basket is empty.</p>
+        <Typography>Your basket is empty.</Typography>
       ) : (
         <div style={{ backgroundColor: "white", padding: "16px" }}>
           {basket.map((item: BasketItem) => (
@@ -59,7 +67,20 @@ const Basket = () => {
           ))}
         </div>
       )}
-      <h3>Total: ${total.toFixed(2)}</h3>
+      <div
+        style={{
+          width: "90%",
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "16px",
+        }}
+      >
+        <Typography style={{ fontWeight: "500" }}>Subtotal</Typography>
+        <Typography style={{ fontWeight: "bold" }}>
+          ${total.toFixed(2)}
+        </Typography>
+      </div>
+      <FormBtn label="Checkout" onClick={() => alert("Checkout")} />
     </div>
   );
 };

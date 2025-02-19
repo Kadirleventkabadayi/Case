@@ -13,7 +13,6 @@ export default function Page() {
           alignItems: "center",
         }}
       >
-        <h2>Welcome to your shopping cart</h2>
         <Basket />
       </div>
     </Provider>
