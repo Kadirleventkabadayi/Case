@@ -2,7 +2,7 @@ import { Button, Card, Rate, Typography } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
-
+import styles from "../../styles/MainCard.module.css";
 interface MainCardProps {
   title: string;
   imageUrl: string;
@@ -35,11 +35,7 @@ const MainCard: React.FC<MainCardProps> = ({
 
   return (
     <Card
-      style={{
-        width: 300,
-        height: 350,
-        margin: 24,
-      }}
+      className={styles.cardContainer}
       styles={{
         body: {
           width: "100%",
@@ -49,13 +45,7 @@ const MainCard: React.FC<MainCardProps> = ({
           alignItems: "center",
         },
       }}
-      cover={
-        <img
-          alt="example"
-          src={imageUrl}
-          style={{ width: 300, height: 200, objectFit: "contain", padding: 16 }}
-        />
-      }
+      cover={<img alt="example" src={imageUrl} className={styles.cardImage} />}
       actions={[
         <Button
           key="add-to-cart"
@@ -68,17 +58,7 @@ const MainCard: React.FC<MainCardProps> = ({
       ]}
     >
       <Card.Meta title={category} />
-      <Typography.Text
-        style={{
-          width: 250,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          textAlign: "center",
-        }}
-      >
-        {title}
-      </Typography.Text>
+      <Typography.Text className={styles.cardTitle}>{title}</Typography.Text>
       <Typography.Text>${price.toFixed(2)}</Typography.Text>
       <Rate disabled allowHalf defaultValue={rating.rate || 0} />
     </Card>

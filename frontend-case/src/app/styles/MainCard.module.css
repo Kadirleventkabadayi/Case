@@ -1,0 +1,22 @@
+/* MainCard.module.css */
+
+.cardContainer {
+  width: 300px;
+  height: 350px;
+  margin: 24px;
+}
+
+.cardImage {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.cardTitle {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}

@@ -8,24 +8,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../features/cart/cartSlice";
 import { RootState } from "../store/store";
 
-// interface BasketItem {
-//   id: number;
-//   title: string;
-//   description: string;
-//   price: number;
-//   count?: number;
-//   image: string;
-// }
-
 const Basket = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-  // Sepetten ürün çıkarma
   const handleRemove = (id: number) => {
-    dispatch(removeFromCart(id)); // Sepetten ürün çıkarma işlemi
+    dispatch(removeFromCart(id));
   };
 
   return (
