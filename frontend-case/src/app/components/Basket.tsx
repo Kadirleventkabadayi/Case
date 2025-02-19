@@ -31,7 +31,7 @@ const Basket = () => {
             <BasketCard
               key={item.id}
               title={item.title}
-              description={item.description || ""}
+              count={item.count}
               price={item.price}
               image={item.image}
               onRemove={() => handleRemove(item.id)}

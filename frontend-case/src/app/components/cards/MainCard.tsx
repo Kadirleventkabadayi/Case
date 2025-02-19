@@ -29,6 +29,7 @@ const MainCard: React.FC<MainCardProps> = ({
       category,
       price,
       rating,
+      count: 1,
     };
     dispatch(addToCart(product));
   };

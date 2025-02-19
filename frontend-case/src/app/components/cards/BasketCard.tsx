@@ -3,7 +3,7 @@ import styles from "../../styles/BasketCard.module.css";
 
 interface BasketCardProps {
   title: string;
-  description: string;
+  count: number;
   price: number;
   image: string;
   onRemove: () => void;
@@ -11,7 +11,7 @@ interface BasketCardProps {
 
 const BasketCard: React.FC<BasketCardProps> = ({
   title,
-  description,
+  count,
   price,
   onRemove,
   image,
@@ -33,7 +33,7 @@ const BasketCard: React.FC<BasketCardProps> = ({
         style={{ width: "100%" }}
         title={<div className={styles.cardTitle}>{title}</div>}
         description={
-          <div className={styles.cardDescription}>{description}</div>
+          <div className={styles.cardDescription}>Amount - {count}</div>
         }
       />
       <div className={styles.cardInfo}>

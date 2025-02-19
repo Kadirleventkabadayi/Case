@@ -8,6 +8,7 @@ interface CartItem {
   price: number;
   description?: string;
   rating: { rate: number; count: number };
+  count: number;
 }
 
 interface CartState {
@@ -22,11 +23,38 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // Ürünü sepete eklerken
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.items.push(action.payload);
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem) {
+        // Eğer ürün zaten sepette varsa, count'u artır
+        existingItem.count += 1;
+      } else {
+        // Eğer ürün yoksa, yeni ürün ekle
+        state.items.push({ ...action.payload, count: 1 });
+      }
     },
+
+    // Ürünü sepette silerken
     removeFromCart: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload
+      );
+
+      if (existingItem) {
+        if (existingItem.count > 1) {
+          // Eğer count 1'den fazla ise, sadece count'u azalt
+          existingItem.count -= 1;
+        } else {
+          // Eğer count 1 ise, ürünü tamamen sepetten çıkar
+          state.items = state.items.filter(
+            (item) => item.id !== action.payload
+          );
+        }
+      }
     },
   },
 });
