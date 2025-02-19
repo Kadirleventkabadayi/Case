@@ -1,7 +1,7 @@
 "use client";
-import Basket from "./components/Basket"; // Basket bileşeni
+import Basket from "./components/Basket";
 import { Provider } from "react-redux";
-import store from "./store/store"; // Redux store
+import store from "./store/store";
 
 export default function Page() {
   return (
