@@ -45,7 +45,11 @@ const Basket = () => {
           ${total.toFixed(2)}
         </Typography>
       </div>
-      <FormBtn label="Checkout" onClick={() => alert("Checkout")} />
+      <FormBtn
+        label="Checkout"
+        onClick={() => alert("Checkout")}
+        isDisabled={cartItems.length === 0}
+      />
     </div>
   );
 };

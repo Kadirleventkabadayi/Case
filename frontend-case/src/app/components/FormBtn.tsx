@@ -4,11 +4,18 @@ interface FormBtnProps {
   onClick: () => void;
   label: string;
   styles?: React.CSSProperties;
+  isDisabled?: boolean;
 }
 
-const FormBtn: React.FC<FormBtnProps> = ({ onClick, label, styles }) => {
+const FormBtn: React.FC<FormBtnProps> = ({
+  onClick,
+  label,
+  styles,
+  isDisabled,
+}) => {
   return (
     <Button
+      disabled={isDisabled}
       type="primary"
       block
       onClick={onClick}
