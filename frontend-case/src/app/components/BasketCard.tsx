@@ -1,4 +1,5 @@
 import { Card, Typography } from "antd";
+import styles from "../styles/BasketCard.module.css";
 
 interface BasketCardProps {
   title: string;
@@ -16,16 +17,12 @@ const BasketCard: React.FC<BasketCardProps> = ({
   image,
 }) => {
   const { Text } = Typography;
+
   return (
     <Card
       hoverable
-      style={{
-        width: 600,
-        height: 200,
-        margin: "16px",
-        display: "flex",
-        cursor: "default",
-      }}
+      className={styles.cardContainer}
+      cover={<img alt="example" src={image} className={styles.cardImage} />}
       styles={{
         body: {
           width: "100%",
@@ -33,62 +30,20 @@ const BasketCard: React.FC<BasketCardProps> = ({
           justifyContent: "space-between",
         },
       }}
-      cover={
-        <img
-          alt="example"
-          src={image}
-          style={{
-            width: "200px",
-            height: "200px",
-            objectFit: "contain",
-            padding: "16px",
-          }}
-        />
-      }
     >
       <Card.Meta
         style={{ width: "100%" }}
-        title={
-          <div
-            style={{
-              width: "14vw",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {title}
-          </div>
-        }
+        title={<div className={styles.cardTitle}>{title}</div>}
         description={
-          <div
-            style={{
-              width: "14vw",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {description}
-          </div>
+          <div className={styles.cardDescription}>{description}</div>
         }
       />
-      <div
-        style={{
-          minWidth: "50px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ marginTop: "16px", fontWeight: "bold" }}>
-          ${price.toFixed(2)}
-        </div>
+      <div className={styles.cardInfo}>
+        <div className={styles.cardPrice}>${price.toFixed(2)}</div>
         <Text
           key="remove-from-cart"
           onClick={onRemove}
-          underline
-          style={{ cursor: "pointer" }}
+          className={styles.removeText}
         >
           Remove
         </Text>
