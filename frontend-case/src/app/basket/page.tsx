@@ -1,7 +1,7 @@
 "use client";
 import Basket from "../components/Basket";
 
-const HomePage: React.FC = () => {
+const BasketPage: React.FC = () => {
   return (
     <div className="layout" style={{ minHeight: "100vh", width: "100%" }}>
       <div style={{ padding: "0 50px" }}>
@@ -21,4 +21,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default BasketPage;
