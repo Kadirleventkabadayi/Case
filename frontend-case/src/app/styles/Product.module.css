@@ -1,0 +1,39 @@
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 16px;
+}
+
+.cardImage {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.cardBodyInner {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .cardContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .cardImage {
+    width: 90vw;
+    height: 90vw;
+    object-fit: contain;
+  }
+
+  .cardBodyInner {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    gap: 12px;
+    margin-block: 8px;
+  }
+}

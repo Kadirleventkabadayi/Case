@@ -1,0 +1,70 @@
+.cardContainer {
+  width: 600px;
+  height: 200px;
+  margin: 16px;
+  display: flex;
+  cursor: default;
+}
+
+.cardImage {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.cardTitle {
+  width: 14vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cardDescription {
+  font-weight: 700;
+}
+
+.cardInfo {
+  min-width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardPrice {
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+.removeText {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .cardImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .cardTitle {
+    width: 100%;
+  }
+  .cardPrice {
+    margin-top: 0px;
+    font-weight: bold;
+  }
+
+  .cardInfo {
+    margin-top: 16px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
