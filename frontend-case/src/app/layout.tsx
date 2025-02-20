@@ -4,7 +4,7 @@ import store from "./store/store";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Layout, Menu } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { ShoppingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -32,7 +32,7 @@ export default function RootLayout({
     if (path === "/") {
       setSelectedMenu("home");
     } else if (path === "/basket") {
-      setSelectedMenu("cart");
+      setSelectedMenu("basket");
     }
   }, [router]);
 
@@ -41,7 +41,7 @@ export default function RootLayout({
 
     if (e.key === "home") {
       router.push("/");
-    } else if (e.key === "cart") {
+    } else if (e.key === "basket") {
       router.push("/basket");
     }
   };
@@ -65,9 +65,9 @@ export default function RootLayout({
                 items={[
                   { key: "home", label: "Home" },
                   {
-                    key: "cart",
-                    label: "Cart",
-                    icon: <ShoppingCartOutlined />,
+                    key: "basket",
+                    label: "Basket",
+                    icon: <ShoppingOutlined />,
                   },
                 ]}
               />
