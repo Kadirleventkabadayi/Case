@@ -71,7 +71,7 @@ const ProductPage = () => {
         image={product.image}
         description={product.description}
         price={product.price}
-        rate={product.rating.rate}
+        rating={product.rating}
       />
       <CommentArea />
     </div>

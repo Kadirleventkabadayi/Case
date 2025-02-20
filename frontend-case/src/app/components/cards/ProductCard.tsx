@@ -1,5 +1,6 @@
 import { Card, Button, Typography, Rate } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import styles from "../../styles/Product.module.css";
 
 interface ProductCardProps {
   title: string;
@@ -8,7 +9,7 @@ interface ProductCardProps {
   imageUrl: string;
   onAddToCart: () => void;
   category: string;
-  rate: number;
+  rating: { rate: number; count: number };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,15 +19,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   imageUrl,
   onAddToCart,
   category,
-  rate,
+  rating,
 }) => {
   return (
     <Card
-      style={{
-        display: "flex",
-        justifyContent: "space-evenly",
-        marginBottom: 16,
-      }}
+      className={styles.cardContainer}
       styles={{
         body: {
           display: "flex",
@@ -34,21 +31,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
           justifyContent: "space-between",
         },
       }}
-      cover={
-        <img
-          alt={title}
-          src={imageUrl}
-          style={{ width: 400, height: 400, objectFit: "contain" }}
-        />
-      }
+      cover={<img alt={title} src={imageUrl} className={styles.cardImage} />}
     >
       <Card.Meta title={title} description={description} />
       <Typography>{category}</Typography>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className={styles.cardBodyInner}>
         <Typography style={{ fontWeight: "bold" }}>
           ${price.toFixed(2)}
         </Typography>
-        <Rate disabled allowHalf defaultValue={rate || 0} />
+        <Rate disabled allowHalf defaultValue={rating.rate || 0} />
       </div>
       <Button
         key="add-to-cart"

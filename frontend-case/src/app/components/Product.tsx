@@ -1,4 +1,6 @@
 import ProductCard from "./cards/ProductCard";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 interface ProductProps {
   id: number;
@@ -7,7 +9,7 @@ interface ProductProps {
   image: string;
   description: string;
   price: number;
-  rate: number;
+  rating: { rate: number; count: number };
 }
 
 const Product: React.FC<ProductProps> = ({
@@ -17,10 +19,20 @@ const Product: React.FC<ProductProps> = ({
   image,
   description,
   price,
-  rate,
+  rating,
 }) => {
-  const addToCart = () => {
-    console.log(`Product ${id} added to cart`);
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      title,
+      image,
+      category,
+      price,
+      rating,
+      count: 1,
+    };
+    dispatch(addToCart(product));
   };
 
   return (
@@ -30,8 +42,8 @@ const Product: React.FC<ProductProps> = ({
       description={description}
       price={price}
       imageUrl={image}
-      onAddToCart={addToCart}
-      rate={rate}
+      onAddToCart={handleAddToCart}
+      rating={rating}
     />
   );
 };

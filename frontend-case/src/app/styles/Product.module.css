@@ -1,0 +1,16 @@
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 16px;
+}
+
+.cardImage {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.cardBodyInner {
+  display: flex;
+  justify-content: space-between;
+}
