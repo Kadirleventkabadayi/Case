@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useGetProductsQuery } from "../services/api";
 import MainCard from "./cards/MainCard";
 import { Typography } from "antd";
+import HomeSkeleton from "./skeletons/HomeSkeleton";
 interface MaintItem {
   id: number;
   title: string;
@@ -24,7 +25,7 @@ const HomePage: React.FC = () => {
   }, [products]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <HomeSkeleton />;
   }
 
   if (error) {
