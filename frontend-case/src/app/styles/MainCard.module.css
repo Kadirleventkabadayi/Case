@@ -4,6 +4,7 @@
   width: 300px;
   height: 400px;
   margin: 24px;
+  cursor: default;
 }
 
 .cardImage {
@@ -11,6 +12,7 @@
   height: 200px;
   object-fit: contain;
   padding: 16px;
+  cursor: pointer;
 }
 
 .cardTitle {

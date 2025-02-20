@@ -46,7 +46,6 @@ const MainCard: React.FC<MainCardProps> = ({
     <Card
       className={styles.cardContainer}
       hoverable
-      onClick={handleCardClick}
       styles={{
         body: {
           width: "100%",
@@ -57,7 +56,14 @@ const MainCard: React.FC<MainCardProps> = ({
           gap: "0.5rem",
         },
       }}
-      cover={<img alt="example" src={imageUrl} className={styles.cardImage} />}
+      cover={
+        <img
+          alt="example"
+          src={imageUrl}
+          className={styles.cardImage}
+          onClick={handleCardClick}
+        />
+      }
     >
       <Card.Meta title={category} />
       <Typography.Text className={styles.cardTitle}>{title}</Typography.Text>

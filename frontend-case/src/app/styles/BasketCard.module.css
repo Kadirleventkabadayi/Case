@@ -11,6 +11,7 @@
   height: 200px;
   object-fit: contain;
   padding: 16px;
+  cursor: pointer;
 }
 
 .cardTitle {

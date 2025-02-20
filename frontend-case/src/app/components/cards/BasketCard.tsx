@@ -7,6 +7,7 @@ interface BasketCardProps {
   price: number;
   image: string;
   onRemove: () => void;
+  onPush: () => void;
 }
 
 const BasketCard: React.FC<BasketCardProps> = ({
@@ -14,13 +15,21 @@ const BasketCard: React.FC<BasketCardProps> = ({
   count,
   price,
   onRemove,
+  onPush,
   image,
 }) => {
   return (
     <Card
       hoverable
       className={styles.cardContainer}
-      cover={<img alt="example" src={image} className={styles.cardImage} />}
+      cover={
+        <img
+          alt="example"
+          src={image}
+          className={styles.cardImage}
+          onClick={onPush}
+        />
+      }
       styles={{
         body: {
           width: "100%",

@@ -6,10 +6,12 @@ import styles from "../styles/Basket.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../features/cart/cartSlice";
 import { RootState } from "../store/store";
+import { useRouter } from "next/navigation";
 
 const Basket = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const router = useRouter();
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * (item.count || 1),
@@ -18,6 +20,10 @@ const Basket = () => {
 
   const handleRemove = (id: number) => {
     dispatch(removeFromCart(id));
+  };
+
+  const handleCardPush = (id: number) => {
+    router.push(`/product/${id}`);
   };
 
   return (
@@ -37,6 +43,7 @@ const Basket = () => {
               price={item.price}
               image={item.image}
               onRemove={() => handleRemove(item.id)}
+              onPush={() => handleCardPush(item.id)}
             />
           ))}
         </div>
