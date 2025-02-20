@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Layout, Menu } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const geistSans = Geist({
@@ -25,6 +25,16 @@ export default function RootLayout({
 }>) {
   const [selectedMenu, setSelectedMenu] = useState<string>("home");
   const router = useRouter();
+
+  useEffect(() => {
+    const path = window.location.pathname;
+
+    if (path === "/") {
+      setSelectedMenu("home");
+    } else if (path === "/basket") {
+      setSelectedMenu("cart");
+    }
+  }, [router]);
 
   const handleMenuClick = (e: { key: string }) => {
     setSelectedMenu(e.key);
@@ -62,7 +72,7 @@ export default function RootLayout({
                 ]}
               />
             </Layout.Header>
-            <Layout.Content style={{ padding: "0 50px" }}>
+            <Layout.Content>
               <div className="site-layout-content">{children}</div>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: "center" }}>

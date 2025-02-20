@@ -33,8 +33,10 @@ const BasketCard: React.FC<BasketCardProps> = ({
       styles={{
         body: {
           width: "100%",
+          height: "200px",
           display: "flex",
           justifyContent: "space-between",
+          flexDirection: window.innerWidth >= 1024 ? "row" : "column",
         },
       }}
     >
