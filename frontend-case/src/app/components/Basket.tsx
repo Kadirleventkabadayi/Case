@@ -58,6 +58,7 @@ const Basket = () => {
         label="Checkout"
         onClick={() => alert("Checkout")}
         isDisabled={cartItems.length === 0}
+        styles={{ width: "90%" }}
       />
     </div>
   );
