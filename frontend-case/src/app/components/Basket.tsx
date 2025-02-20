@@ -1,5 +1,4 @@
 "use client";
-
 import BasketCard from "./cards/BasketCard";
 import { Typography } from "antd";
 import FormBtn from "./FormBtn";
@@ -12,7 +11,10 @@ const Basket = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * (item.count || 1),
+    0
+  );
 
   const handleRemove = (id: number) => {
     dispatch(removeFromCart(id));
@@ -31,7 +33,7 @@ const Basket = () => {
             <BasketCard
               key={item.id}
               title={item.title}
-              count={item.count}
+              count={item.count || 1}
               price={item.price}
               image={item.image}
               onRemove={() => handleRemove(item.id)}

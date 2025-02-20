@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useGetProductsQuery } from "../services/api";
 import MainCard from "./cards/MainCard";
-import { Layout, Menu, Typography } from "antd";
-import Basket from "./Basket";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-
-const { Header, Content, Footer } = Layout;
-
+import { Typography } from "antd";
 interface MaintItem {
   id: number;
   title: string;
@@ -19,7 +14,6 @@ interface MaintItem {
 
 const HomePage: React.FC = () => {
   const { data: products, isLoading, error } = useGetProductsQuery(undefined);
-  const [selectedMenu, setSelectedMenu] = useState<string>("home");
 
   const [basket, setBasket] = useState<MaintItem[]>([]);
 
@@ -29,10 +23,6 @@ const HomePage: React.FC = () => {
     }
   }, [products]);
 
-  const handleMenuClick = (e: { key: string }) => {
-    setSelectedMenu(e.key);
-  };
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -41,10 +31,10 @@ const HomePage: React.FC = () => {
     return <p>Error fetching products.</p>;
   }
 
-  const renderContent = () => {
-    switch (selectedMenu) {
-      case "home":
-        return (
+  return (
+    <div className="layout" style={{ minHeight: "100vh", width: "100%" }}>
+      <div style={{ padding: "0 50px" }}>
+        <div className="site-layout-content">
           <div
             style={{
               flexWrap: "wrap",
@@ -68,47 +58,9 @@ const HomePage: React.FC = () => {
               ))
             )}
           </div>
-        );
-      case "cart":
-        return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Basket />
-          </div>
-        );
-      default:
-        return <Typography>Welcome to our website!</Typography>;
-    }
-  };
-
-  return (
-    <Layout className="layout" style={{ minHeight: "100vh", width: "100%" }}>
-      <Header>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["home"]}
-          onClick={handleMenuClick}
-          selectedKeys={[selectedMenu]}
-          items={[
-            { key: "home", label: "Home" },
-            { key: "cart", label: "Cart", icon: <ShoppingCartOutlined /> },
-          ]}
-        />
-      </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <div className="site-layout-content">{renderContent()}</div>
-      </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Ant Design ©2023 Created by Ant UED
-      </Footer>
-    </Layout>
+        </div>
+      </div>
+    </div>
   );
 };
 
